@@ -147,11 +147,14 @@
   .mobile-menu {
     display: none; position: fixed; inset: 0;
     background: rgba(8,8,8,.98); z-index: 199; backdrop-filter: blur(14px);
-    flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    flex-direction: column; align-items: center; justify-content: flex-start;
+    padding-top: 100px; gap: 8px;
   }
   .mobile-menu.open { display: flex; }
-  .mobile-menu a { font-size: 24px; font-weight: 700; color: #ccc; text-decoration: none; transition: color .2s; }
-  .mobile-menu a:hover { color: #fff; }
+  .mobile-menu a.mobile-link { font-size: 17px; font-weight: 600; color: #ccc; text-decoration: none; transition: color .2s; padding: 10px 0; width: 100%; text-align: center; border-bottom: 1px solid rgba(255,255,255,.06); max-width: 280px; }
+  .mobile-menu a.mobile-link:last-of-type { border-bottom: none; }
+  .mobile-menu a.mobile-link:hover { color: #fff; }
+  .mobile-menu .btn-primary { margin-top: 24px; }
 
   /* WhatsApp float */
   .wa-float {
@@ -173,7 +176,7 @@
   .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 80% 50%, #C8922A0a 0%, transparent 70%); }
   .hero-grid {
     position: absolute; inset: 0;
-    background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
     -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
@@ -227,12 +230,12 @@
     position: absolute; left: 50%; top: 50%;
     transform: translate(-50%, -50%);
     width: 700px; height: 700px;
-    background: radial-gradient(ellipse at center, rgba(240,120,32,.07) 0%, transparent 65%);
+    background: radial-gradient(ellipse at center, rgba(240,120,32,.35) 0%, transparent 65%);
     pointer-events: none; z-index: 0;
   }
   .number-item {
     background-color: var(--dark);
-    background-image: radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(255,255,255,.18) 1px, transparent 1px);
     background-size: 24px 24px;
     padding: 56px 44px; display: flex; flex-direction: column; align-items: center; text-align: center;
     position: relative; z-index: 1;
@@ -263,7 +266,7 @@
     content: '';
     position: absolute; top: -160px; right: -160px;
     width: 520px; height: 520px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(240,120,32,.07) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(240,120,32,.35) 0%, transparent 70%);
     pointer-events: none;
   }
   .services::after {
@@ -271,8 +274,8 @@
     position: absolute; bottom: 60px; left: 60px;
     width: 280px; height: 280px;
     background-image:
-      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px);
     background-size: 32px 32px;
     mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
     -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
@@ -327,14 +330,14 @@
     position: absolute; right: -100px; top: 50%;
     transform: translateY(-50%);
     width: 480px; height: 480px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(240,120,32,.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(240,120,32,.32) 0%, transparent 70%);
     pointer-events: none;
   }
   .about::after {
     content: '';
     position: absolute; top: 60px; left: -20px;
     width: 200px; height: 200px;
-    background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(255,255,255,.25) 1px, transparent 1px);
     background-size: 18px 18px;
     mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
     -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
@@ -507,7 +510,7 @@
     <a href="#servicos" class="mobile-link">Serviços</a>
     <a href="#cases" class="mobile-link">Cases</a>
     <a href="#metodo" class="mobile-link">Método</a>
-    <a href="https://wa.me/5582999103246?text=Olá!%20Quero%20agendar%20um%20diagnóstico%20gratuito%20com%20a%20Makewell." class="btn-primary" style="font-size:14px;padding:16px 40px;text-decoration:none" target="_blank" rel="noopener">Agendar Diagnóstico Gratuito</a>
+    <a href="https://wa.me/5582999103246?text=Olá!%20Quero%20agendar%20um%20diagnóstico%20gratuito%20com%20a%20Makewell." class="btn-primary" style="font-size:13px;padding:13px 28px;text-decoration:none;letter-spacing:.08em" target="_blank" rel="noopener">Agendar Diagnóstico Gratuito</a>
   </div>
 </header>
 
