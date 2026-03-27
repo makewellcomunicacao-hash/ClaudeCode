@@ -364,7 +364,9 @@
     nav { padding: 0 20px; }
     .btn-nav { display: none; }
 
-    .hero { grid-template-columns: 1fr; padding: 100px 20px 56px; gap: 48px; }
+    .hero { grid-template-columns: 1fr; padding: 100px 20px 56px; gap: 48px; overflow: hidden; }
+    .hero-btns { flex-direction: column; width: 100%; }
+    .hero-btns .btn-primary, .hero-btns .btn-outline { width: 100%; justify-content: center; text-align: center; }
     h1.hero-h1 { letter-spacing: -2px; }
     .hero-right { order: -1; }
     .hero-stats { grid-template-columns: 1fr 1fr; }
@@ -396,8 +398,8 @@
   }
 
   @media (max-width: 480px) {
-    .hero-btns { flex-direction: column; }
-    .hero-btns .btn-primary, .hero-btns .btn-outline { width: 100%; text-align: center; }
+    .hero-btns { flex-direction: column; width: 100%; }
+    .hero-btns .btn-primary, .hero-btns .btn-outline { width: 100%; text-align: center; justify-content: center; box-sizing: border-box; }
     .metodo-steps { grid-template-columns: 1fr; }
     .numbers { grid-template-columns: repeat(2, 1fr); }
     .number-item { padding: 32px 24px; }
