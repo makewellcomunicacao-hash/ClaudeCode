@@ -1356,21 +1356,27 @@
     const wrap = track.parentElement;
     wrap.addEventListener('mouseenter', () => { paused = true; });
     wrap.addEventListener('mouseleave', () => { paused = false; });
-    // Calcula o tamanho exato de um set (inclui margin-right do último card)
-    function getHalf() {
-      const cards = track.children;
-      const total = cards.length;
-      if (!total) return track.scrollWidth / 2;
-      const card = cards[0];
-      const style = getComputedStyle(card);
-      const cardW = card.offsetWidth + parseFloat(style.marginRight);
-      return (total / 2) * cardW;
+
+    // Pega os 5 cards originais e calcula a largura de um set
+    const origCards = Array.from(track.children).slice(0, 5);
+    const firstCard = origCards[0];
+    const cardStyle = getComputedStyle(firstCard);
+    const cardW = firstCard.offsetWidth + parseFloat(cardStyle.marginRight);
+    const setW = origCards.length * cardW;
+
+    // Clona sets extras até a track ser larga o suficiente para qualquer tela
+    function fillTrack() {
+      while (track.scrollWidth < window.innerWidth + setW * 2) {
+        origCards.forEach(c => track.appendChild(c.cloneNode(true)));
+      }
     }
+    fillTrack();
+    window.addEventListener('resize', fillTrack, { passive: true });
+
     function tick() {
       if (!paused) {
         pos += speed;
-        const half = getHalf();
-        if (pos >= half) pos -= half;
+        if (pos >= setW) pos -= setW;
         track.style.transform = `translateX(-${pos}px)`;
       }
       raf = requestAnimationFrame(tick);
