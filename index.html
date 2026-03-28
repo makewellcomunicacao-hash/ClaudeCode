@@ -18,6 +18,7 @@
 <meta name="robots" content="index, follow">
 <meta name="author" content="Makewell Comunicação">
 <link rel="canonical" href="https://makewell.com.br/">
+<link rel="manifest" href="/manifest.json">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -635,6 +636,52 @@
     .footer-col p, .footer-col-links, .footer-address-line, .footer-contact { text-align: left; }
   }
 
+  /* ── PROGRESS BAR ── */
+  #progress-bar { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); z-index: 9999; transition: width .1s linear; pointer-events: none; }
+
+  /* ── BACK TO TOP ── */
+  #back-to-top { position: fixed; bottom: 88px; right: 24px; width: 44px; height: 44px; border-radius: 50%; background: var(--gold); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 500; opacity: 0; transform: translateY(12px); transition: opacity .3s, transform .3s, background .2s; pointer-events: none; }
+  #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  #back-to-top:hover, #back-to-top:active { background: var(--gold-light); }
+  #back-to-top svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ── FAQ ── */
+  .faq { padding: 100px 60px; background: var(--dark); }
+  .faq-header { text-align: center; margin-bottom: 56px; }
+  .faq-h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 900; color: #fff; letter-spacing: -1.5px; margin-top: 12px; }
+  .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
+  .faq-item { background: #111; border: 1px solid #1e1e1e; border-radius: 10px; overflow: hidden; }
+  .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 22px 24px; font-size: 15px; font-weight: 700; color: #fff; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq-question:hover, .faq-question:active { color: var(--gold); }
+  .faq-icon { width: 20px; height: 20px; flex-shrink: 0; border-radius: 50%; background: #1e1e1e; display: flex; align-items: center; justify-content: center; transition: background .2s, transform .3s; }
+  .faq-icon svg { width: 10px; height: 10px; stroke: #888; stroke-width: 2.5; fill: none; transition: stroke .2s; }
+  .faq-item.open .faq-icon { background: var(--gold); transform: rotate(45deg); }
+  .faq-item.open .faq-icon svg { stroke: #fff; }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(.22,1,.36,1); }
+  .faq-answer-inner { padding: 0 24px 22px; font-size: 14px; color: #888; line-height: 1.8; }
+  .faq-item.open .faq-answer { max-height: 400px; }
+  @media (max-width: 768px) { .faq { padding: 72px 20px; } }
+
+  /* ── SKELETON loading depoimentos ── */
+  .reel-card-video { background: #111; }
+  .reel-card-video img { opacity: 0; transition: opacity .4s ease; }
+  .reel-card-video img.loaded { opacity: 1; }
+  .reel-card-video::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #1a1a1a 25%, #222 50%, #1a1a1a 75%); background-size: 200% 100%; animation: skeleton 1.4s linear infinite; z-index: 0; }
+  .reel-card-video.img-loaded::before { display: none; }
+  @keyframes skeleton { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+  /* ── LGPD BANNER ── */
+  #cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: #111; border-top: 1px solid #222; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; z-index: 800; transform: translateY(100%); transition: transform .4s cubic-bezier(.22,1,.36,1); flex-wrap: wrap; }
+  #cookie-banner.visible { transform: translateY(0); }
+  #cookie-banner p { font-size: 13px; color: #aaa; line-height: 1.6; flex: 1; min-width: 200px; }
+  #cookie-banner a { color: var(--gold); text-decoration: underline; }
+  .cookie-btns { display: flex; gap: 10px; flex-shrink: 0; }
+  .btn-cookie-accept { background: var(--gold); color: #fff; border: none; padding: 10px 22px; border-radius: 6px; font-weight: 700; font-size: 12px; letter-spacing: .5px; cursor: pointer; transition: background .2s; }
+  .btn-cookie-accept:hover, .btn-cookie-accept:active { background: var(--gold-light); }
+  .btn-cookie-decline { background: transparent; color: #666; border: 1px solid #333; padding: 10px 18px; border-radius: 6px; font-weight: 600; font-size: 12px; cursor: pointer; transition: color .2s, border-color .2s; }
+  .btn-cookie-decline:hover, .btn-cookie-decline:active { color: #aaa; border-color: #555; }
+  @media (max-width: 600px) { #cookie-banner { padding: 16px 20px; } .cookie-btns { width: 100%; } .btn-cookie-accept, .btn-cookie-decline { flex: 1; text-align: center; } }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -720,6 +767,17 @@
 </style>
 </head>
 <body ontouchstart="">
+<div id="progress-bar" aria-hidden="true"></div>
+<button id="back-to-top" aria-label="Voltar ao topo">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<div id="cookie-banner" role="region" aria-label="Aviso de cookies">
+  <p>Usamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa <a href="#" onclick="return false;">Política de Privacidade</a>.</p>
+  <div class="cookie-btns">
+    <button class="btn-cookie-decline" id="cookieDecline">Recusar</button>
+    <button class="btn-cookie-accept" id="cookieAccept">Aceitar</button>
+  </div>
+</div>
 
 <!-- Custom cursor (desktop only) -->
 <div class="cursor" id="cursor" aria-hidden="true"></div>
@@ -1335,6 +1393,61 @@
   </div>
 </div>
 
+<!-- ── FAQ ── -->
+<section class="faq" aria-labelledby="faq-title">
+  <div class="faq-header">
+    <div class="tag reveal">DÚVIDAS FREQUENTES</div>
+    <h2 class="faq-h2 reveal" id="faq-title" style="transition-delay:.1s">Perguntas <span class="gold">frequentes</span></h2>
+  </div>
+  <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+    <div class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-question" aria-expanded="false">
+        <span itemprop="name">Quanto custa contratar a Makewell?</span>
+        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      </button>
+      <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="faq-answer-inner" itemprop="text">Nossos planos são personalizados de acordo com o porte e os objetivos de cada empresa. O primeiro passo é um diagnóstico gratuito, onde analisamos seu negócio e apresentamos uma proposta sob medida. Entre em contato pelo WhatsApp para agendar.</div>
+      </div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:.05s" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-question" aria-expanded="false">
+        <span itemprop="name">Em quanto tempo vejo resultados?</span>
+        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      </button>
+      <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="faq-answer-inner" itemprop="text">Os primeiros resultados de tráfego pago costumam aparecer nas primeiras 2 a 4 semanas. Para estratégias de branding e SEO, o crescimento é mais consistente e se consolida entre 60 e 90 dias. Nosso Método FishWell garante acompanhamento contínuo e metas claras em cada etapa.</div>
+      </div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:.1s" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-question" aria-expanded="false">
+        <span itemprop="name">A Makewell atende empresas fora de Maceió?</span>
+        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      </button>
+      <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="faq-answer-inner" itemprop="text">Sim! Temos sede em Maceió (AL) e São Paulo (SP) e atendemos clientes em todo o Brasil de forma 100% remota. Nossa equipe já entregou resultados para empresas dos setores jurídico, saúde, varejo e serviços em diversas regiões do país.</div>
+      </div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:.15s" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-question" aria-expanded="false">
+        <span itemprop="name">Quais plataformas a Makewell gerencia?</span>
+        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      </button>
+      <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="faq-answer-inner" itemprop="text">Gerenciamos Google Ads, Meta Ads (Instagram e Facebook), SEO, TikTok, LinkedIn e estratégias de e-mail marketing e CRM. Todas as ações são integradas dentro do Método FishWell para garantir resultados mensuráveis.</div>
+      </div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:.2s" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-question" aria-expanded="false">
+        <span itemprop="name">Como funciona o acompanhamento dos resultados?</span>
+        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      </button>
+      <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="faq-answer-inner" itemprop="text">Cada cliente tem acesso a relatórios periódicos com métricas reais: ROI, custo por lead, alcance e conversões. Realizamos reuniões de alinhamento regulares e você tem contato direto com o time responsável pela sua conta — sem intermediários.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── CTA FINAL ── -->
 <section class="cta-section" aria-labelledby="cta-title">
   <div class="hero-particles cta-particles" id="ctaParticles" aria-hidden="true"></div>
@@ -1672,6 +1785,73 @@
       });
     }, { threshold: 0.4 });
     counterObs.observe(heroCard);
+  })();
+
+  // ── Progress bar ──
+  (function() {
+    const bar = document.getElementById('progress-bar');
+    if (!bar) return;
+    function update() {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+  })();
+
+  // ── Back to top ──
+  (function() {
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  })();
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // ── Skeleton loading depoimentos ──
+  document.querySelectorAll('.reel-card-video img').forEach(img => {
+    if (img.complete) {
+      img.classList.add('loaded');
+      img.closest('.reel-card-video').classList.add('img-loaded');
+    } else {
+      img.addEventListener('load', () => {
+        img.classList.add('loaded');
+        img.closest('.reel-card-video').classList.add('img-loaded');
+      });
+    }
+  });
+
+  // ── LGPD Cookie banner ──
+  (function() {
+    const banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+    if (localStorage.getItem('cookie-consent')) return;
+    setTimeout(() => banner.classList.add('visible'), 1200);
+    document.getElementById('cookieAccept').addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'accepted');
+      banner.classList.remove('visible');
+    });
+    document.getElementById('cookieDecline').addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'declined');
+      banner.classList.remove('visible');
+    });
   })();
 </script>
 </body>
