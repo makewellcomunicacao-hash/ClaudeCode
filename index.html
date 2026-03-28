@@ -195,7 +195,30 @@
   .hero-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s infinite; flex-shrink: 0; }
   @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
   h1.hero-h1 { font-size: clamp(40px, 5.5vw, 76px); font-weight: 900; line-height: 1.02; letter-spacing: -3px; color: #fff; margin-bottom: 28px; }
-  h1.hero-h1 em { font-style: normal; color: var(--gold); }
+  h1.hero-h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, #F07820, #F5A623, #F07820, #C8922A, #F07820);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer-gold 4s linear infinite;
+  }
+  @keyframes shimmer-gold { 0%{background-position:0% 50%} 100%{background-position:300% 50%} }
+
+  /* Partículas hero */
+  .hero-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+  .hero-particles span {
+    position: absolute; width: 2px; height: 2px; border-radius: 50%;
+    background: rgba(240,120,32,.6); animation: float-particle var(--d) ease-in-out infinite;
+    left: var(--x); top: var(--y); opacity: 0;
+  }
+  @keyframes float-particle {
+    0%   { opacity: 0; transform: translateY(0) scale(1); }
+    20%  { opacity: 1; }
+    80%  { opacity: .6; }
+    100% { opacity: 0; transform: translateY(-120px) scale(0); }
+  }
   .hero-p { font-size: 16px; color: #bbb; line-height: 1.85; max-width: 440px; margin-bottom: 44px; }
   .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
 
@@ -219,6 +242,25 @@
   .hero-stat-label { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #555; }
   .hero-tag-bar { padding: 18px 24px; border-top: 1px solid #1e1e1e; display: flex; gap: 8px; flex-wrap: wrap; }
   .htag { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #666; padding: 5px 10px; border: 1px solid #222; border-radius: 4px; }
+
+  /* ── POR QUE A MAKEWELL ── */
+  .porque { padding: 100px 60px; background: var(--dark2); border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; }
+  .porque-header { text-align: center; margin-bottom: 64px; }
+  .porque-h2 { font-size: clamp(30px, 4vw, 52px); font-weight: 900; letter-spacing: -1.5px; color: #fff; margin-top: 14px; margin-bottom: 16px; }
+  .porque-sub { font-size: 15px; color: #666; max-width: 520px; margin: 0 auto; line-height: 1.8; }
+  .porque-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: #1a1a1a; }
+  .porque-card { background: #0d0d0d; padding: 44px 36px; position: relative; overflow: hidden; transition: background .3s, transform .3s; cursor: default; }
+  .porque-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transform: scaleX(0); transform-origin: left; transition: transform .4s ease; }
+  .porque-card:hover { background: #111; transform: translateY(-4px); }
+  .porque-card:hover::before { transform: scaleX(1); }
+  .porque-card-num { font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--gold); opacity: .5; margin-bottom: 24px; }
+  .porque-icon { width: 48px; height: 48px; border: 1px solid rgba(240,120,32,.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; background: rgba(240,120,32,.05); }
+  .porque-icon svg { width: 22px; height: 22px; color: var(--gold); }
+  .porque-title { font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 14px; line-height: 1.2; }
+  .porque-title span { color: var(--gold); }
+  .porque-desc { font-size: 14px; color: #666; line-height: 1.85; }
+  @media (max-width: 860px) { .porque { padding: 72px 32px; } .porque-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) { .porque { padding: 60px 20px; } }
 
   /* ── VÍDEO INSTITUCIONAL ── */
   .inst-section { position: relative; background: #050505; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; overflow: hidden; cursor: pointer; }
@@ -276,6 +318,7 @@
   .reel-card:hover .reel-card-play { background: var(--gold); border-color: var(--gold); transform: translate(-50%,-50%) scale(1.12); }
   .reel-card-play svg { width: 18px; height: 18px; fill: #fff; margin-left: 3px; }
   .reel-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 14px 16px; }
+  .reel-card-quote { font-size: 11px; color: rgba(255,255,255,.75); font-style: italic; line-height: 1.45; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .reel-card-name { font-size: 13px; font-weight: 700; color: #fff; line-height: 1.3; }
   .reel-card-role { font-size: 10px; color: rgba(255,255,255,.55); margin-top: 3px; line-height: 1.4; }
 
@@ -602,6 +645,7 @@
 <section class="hero" aria-label="Introdução">
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
 
   <div class="hero-left">
     <div class="hero-pill reveal">
@@ -685,20 +729,55 @@
 <!-- ── NUMBERS ── -->
 <section class="numbers" aria-label="Números e resultados">
   <div class="number-item reveal">
-    <div class="number-value"><span class="accent">+</span>26x</div>
+    <div class="number-value" data-prefix="+" data-target="26" data-suffix="x"><span class="accent">+</span>26x</div>
     <div class="number-desc">ROI mais alto já entregue para um único cliente</div>
   </div>
   <div class="number-item reveal" style="transition-delay:.1s">
-    <div class="number-value">100<span class="accent">+</span></div>
+    <div class="number-value" data-prefix="" data-target="100" data-suffix="+">100<span class="accent">+</span></div>
     <div class="number-desc">Clientes captados em um único mês (recorde)</div>
   </div>
   <div class="number-item reveal" style="transition-delay:.2s">
-    <div class="number-value">R$<span class="accent">400k</span></div>
+    <div class="number-value" data-prefix="R$" data-target="400" data-suffix="k">R$<span class="accent">400k</span></div>
     <div class="number-desc">Faturamento gerado para clientes Makewell</div>
   </div>
   <div class="number-item reveal" style="transition-delay:.3s">
-    <div class="number-value">9<span class="accent">+</span></div>
+    <div class="number-value" data-prefix="" data-target="9" data-suffix="+">9<span class="accent">+</span></div>
     <div class="number-desc">Anos transformando marcas no Brasil</div>
+  </div>
+</section>
+
+<!-- ── POR QUE A MAKEWELL ── -->
+<section class="porque" aria-labelledby="porque-title">
+  <div class="porque-header">
+    <div class="tag reveal">NOSSO DIFERENCIAL</div>
+    <h2 class="porque-h2 reveal" id="porque-title" style="transition-delay:.1s">Por que a <span class="gold">Makewell</span>?</h2>
+    <p class="porque-sub reveal" style="transition-delay:.2s">Não somos uma agência comum. Temos método próprio, entregamos resultado mensurável e tratamos cada cliente como único.</p>
+  </div>
+  <div class="porque-grid">
+    <article class="porque-card reveal">
+      <div class="porque-card-num">01</div>
+      <div class="porque-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3 class="porque-title">Método <span>FishWell</span></h3>
+      <p class="porque-desc">Um processo de 5 etapas desenvolvido ao longo de 9 anos que transforma investimento em receita mensurável e previsível — não em achismo.</p>
+    </article>
+    <article class="porque-card reveal" style="transition-delay:.1s">
+      <div class="porque-card-num">02</div>
+      <div class="porque-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+      </div>
+      <h3 class="porque-title">Resultado <span>mensurável</span></h3>
+      <p class="porque-desc">Cada ação tem número, meta e responsável. Você acompanha o ROI em tempo real — sem relatório de vaidade, só o que importa: crescimento.</p>
+    </article>
+    <article class="porque-card reveal" style="transition-delay:.2s">
+      <div class="porque-card-num">03</div>
+      <div class="porque-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3 class="porque-title">Atendimento <span>exclusivo</span></h3>
+      <p class="porque-desc">Cada cliente tem estratégia exclusiva, time dedicado e acesso direto à liderança. Sem terceirização, sem template — só estratégia feita para você.</p>
+    </article>
   </div>
 </section>
 
@@ -738,7 +817,6 @@
     </div>
     <div class="metodo-right reveal-right">
       <p class="metodo-sub">Como transformamos investimento em receita mensurável e previsível</p>
-      <button class="btn-outline-dark">Conhecer o Método →</button>
     </div>
   </div>
   <div class="metodo-steps" role="list">
@@ -874,7 +952,7 @@
         <span class="case-roi">ROI +26x</span>
       </div>
       <div class="case-body">
-        <h3 class="case-title">Advogado</h3>
+        <h3 class="case-title">Dr. Felipe Vilela</h3>
         <p class="case-sub">Posicionamento + Social + Tráfego</p>
         <div class="case-metrics" role="list" aria-label="Métricas do case jurídico">
           <div class="case-metric" role="listitem">
@@ -902,7 +980,7 @@
         <span class="case-roi">ROI +20x</span>
       </div>
       <div class="case-body">
-        <h3 class="case-title">Clínica Médica</h3>
+        <h3 class="case-title">Dra. Thielen</h3>
         <p class="case-sub">Posicionamento + Social + Tráfego</p>
         <div class="case-metrics" role="list" aria-label="Métricas do case saúde">
           <div class="case-metric" role="listitem">
@@ -943,7 +1021,6 @@
     <blockquote class="about-quote reveal" style="transition-delay:.2s">
       <p>"Não criamos marcas apenas para vender mais. Criamos marcas que significam algo — para o mercado, para os clientes e para quem as constrói."</p>
     </blockquote>
-    <button class="btn-outline reveal" style="transition-delay:.25s">Conhecer a Equipe →</button>
   </div>
   <div class="reveal-right" style="transition-delay:.15s">
     <div class="team">
@@ -1016,7 +1093,10 @@
           <img src="https://img.youtube.com/vi/SjXs-_mmDxI/hqdefault.jpg" alt="Dra. Thielen" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          <div class="reel-card-info"><div class="reel-card-name">Dra. Thielen</div><div class="reel-card-role">Cirurgiã Vascular</div></div>
+          <div class="reel-card-info">
+            <div class="reel-card-quote">"Sou muito fã deles! Vcs são os especialistas e a atenção é incomparável"</div>
+            <div class="reel-card-name">Dra. Thielen</div><div class="reel-card-role">Cirurgiã Vascular</div>
+          </div>
         </div>
       </div>
 
@@ -1034,7 +1114,10 @@
           <img src="https://img.youtube.com/vi/ij42ilGNbrY/hqdefault.jpg" alt="Felipe Vilela" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          <div class="reel-card-info"><div class="reel-card-name">Felipe Vilela</div><div class="reel-card-role">Advogado</div></div>
+          <div class="reel-card-info">
+            <div class="reel-card-quote">"Sem vcs eu não conseguiria. Os ganchos, os textos e a qualidade são incríveis"</div>
+            <div class="reel-card-name">Felipe Vilela</div><div class="reel-card-role">Advogado</div>
+          </div>
         </div>
       </div>
 
@@ -1060,7 +1143,10 @@
           <img src="https://img.youtube.com/vi/SjXs-_mmDxI/hqdefault.jpg" alt="Dra. Thielen" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          <div class="reel-card-info"><div class="reel-card-name">Dra. Thielen</div><div class="reel-card-role">Cirurgiã Vascular</div></div>
+          <div class="reel-card-info">
+            <div class="reel-card-quote">"Sou muito fã deles! Vcs são os especialistas e a atenção é incomparável"</div>
+            <div class="reel-card-name">Dra. Thielen</div><div class="reel-card-role">Cirurgiã Vascular</div>
+          </div>
         </div>
       </div>
       <div class="reel-card" data-name="Tereza Cristina" data-role="Advogada" data-src="https://www.youtube.com/shorts/bJaKzu9WHy0">
@@ -1076,7 +1162,10 @@
           <img src="https://img.youtube.com/vi/ij42ilGNbrY/hqdefault.jpg" alt="Felipe Vilela" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-          <div class="reel-card-info"><div class="reel-card-name">Felipe Vilela</div><div class="reel-card-role">Advogado</div></div>
+          <div class="reel-card-info">
+            <div class="reel-card-quote">"Sem vcs eu não conseguiria. Os ganchos, os textos e a qualidade são incríveis"</div>
+            <div class="reel-card-name">Felipe Vilela</div><div class="reel-card-role">Advogado</div>
+          </div>
         </div>
       </div>
 
@@ -1333,6 +1422,92 @@
   setTimeout(() => {
     document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => el.classList.add('visible'));
   }, 3000);
+
+  // ── Numbers section counter ──
+  (function() {
+    const numberEls = document.querySelectorAll('.number-value[data-target]');
+    if (!numberEls.length) return;
+    const duration = 2000;
+    function animateNum(el) {
+      const target = parseInt(el.dataset.target);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const isAccentSuffix = suffix !== 'x'; // x goes inline, others use accent span
+      const start = performance.now();
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const val = Math.round(ease * target);
+        if (suffix === 'x') {
+          el.innerHTML = `<span class="accent">+</span>${val}x`;
+        } else if (prefix === 'R$') {
+          el.innerHTML = `R$<span class="accent">${val}k</span>`;
+        } else {
+          el.innerHTML = `${val}<span class="accent">${suffix}</span>`;
+        }
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    const numObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { animateNum(e.target); numObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    numberEls.forEach(el => numObs.observe(el));
+  })();
+
+  // ── Hero particles ──
+  (function() {
+    const container = document.getElementById('heroParticles');
+    if (!container) return;
+    for (let i = 0; i < 24; i++) {
+      const s = document.createElement('span');
+      s.style.setProperty('--x', Math.random() * 100 + '%');
+      s.style.setProperty('--y', (40 + Math.random() * 55) + '%');
+      s.style.setProperty('--d', (4 + Math.random() * 8).toFixed(1) + 's');
+      s.style.animationDelay = (Math.random() * 8).toFixed(1) + 's';
+      container.appendChild(s);
+    }
+  })();
+
+  // ── Hero counter animation ──
+  (function() {
+    const stats = [
+      { el: null, target: 26, prefix: '+', suffix: 'x', decimals: 0 },
+      { el: null, target: 100, prefix: '', suffix: '+', decimals: 0 },
+      { el: null, target: 400, prefix: 'R$', suffix: 'k', decimals: 0 },
+      { el: null, target: 9, prefix: '', suffix: '+', decimals: 0 }
+    ];
+    const valueEls = document.querySelectorAll('.hero-stat-value');
+    valueEls.forEach((el, i) => { if (stats[i]) stats[i].el = el; });
+
+    function animateCounter(stat) {
+      if (!stat.el) return;
+      const duration = 1800;
+      const start = performance.now();
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const val = Math.round(ease * stat.target);
+        stat.el.textContent = stat.prefix + val + stat.suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    const heroCard = document.querySelector('.hero-card');
+    if (!heroCard) return;
+    const counterObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          stats.forEach(s => animateCounter(s));
+          counterObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    counterObs.observe(heroCard);
+  })();
 </script>
 </body>
 </html>
