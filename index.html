@@ -13,6 +13,8 @@
 <meta name="geo.placename" content="Maceió, Alagoas">
 <meta name="geo.position" content="-9.6658;-35.7350">
 <meta name="ICBM" content="-9.6658, -35.7350">
+<meta name="theme-color" content="#F07820">
+<meta name="color-scheme" content="dark">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Makewell Comunicação">
 <link rel="canonical" href="https://makewell.com.br/">
@@ -633,6 +635,14 @@
     .footer-col p, .footer-col-links, .footer-address-line, .footer-contact { text-align: left; }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   /* ══════════════════════════════════
      RESPONSIVE — MOBILE
   ══════════════════════════════════ */
@@ -719,7 +729,7 @@
 <header>
   <nav id="nav" role="navigation" aria-label="Menu principal">
     <a href="/" class="nav-logo" aria-label="Makewell Comunicação — página inicial">
-      <img src="logo-white.png" alt="Makewell Comunicação" height="40">
+      <img src="logo-white.png" alt="Makewell Comunicação" width="160" height="40">
     </a>
     <div class="nav-right">
       <div class="nav-links" role="list">
@@ -1146,7 +1156,7 @@
     <div class="team">
       <div class="team-card reveal">
         <div class="team-avatar">
-          <img src="giuliana.jpg" alt="Giuliana Castela, Diretora de Operação e Estratégia Criativa da Makewell Comunicação">
+          <img src="giuliana.jpg" alt="Giuliana Castela, Diretora de Operação e Estratégia Criativa da Makewell Comunicação" width="110" height="110" loading="lazy">
         </div>
         <div>
           <div class="team-name">Giuliana Castela</div>
@@ -1155,7 +1165,7 @@
       </div>
       <div class="team-card reveal" style="transition-delay:.1s">
         <div class="team-avatar">
-          <img src="ismael.jpg" alt="Ismael Filho, Diretor de Vendas e Administrativo da Makewell Comunicação">
+          <img src="ismael.jpg" alt="Ismael Filho, Diretor de Vendas e Administrativo da Makewell Comunicação" width="110" height="110" loading="lazy">
         </div>
         <div>
           <div class="team-name">Ismael Filho</div>
@@ -1192,7 +1202,7 @@
 
       <div class="reel-card" data-name="Paola Massari" data-role="Casa Hunter" data-src="https://www.youtube.com/shorts/JRrnKGNk-UE">
         <div class="reel-card-video">
-          <img src="https://img.youtube.com/vi/JRrnKGNk-UE/hqdefault.jpg" alt="Paola Massari" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="https://img.youtube.com/vi/JRrnKGNk-UE/hqdefault.jpg" alt="Paola Massari" width="480" height="360" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="reel-card-info">
@@ -1204,7 +1214,7 @@
 
       <div class="reel-card" data-name="Dra. Carolina Mergulhão" data-role="Endocrinologia | Metabologia" data-src="https://www.youtube.com/shorts/PoBa9wS9rYM">
         <div class="reel-card-video">
-          <img src="https://img.youtube.com/vi/PoBa9wS9rYM/hqdefault.jpg" alt="Dra. Carolina Mergulhão" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="https://img.youtube.com/vi/PoBa9wS9rYM/hqdefault.jpg" alt="Dra. Carolina Mergulhão" width="480" height="360" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="reel-card-info">
@@ -1216,7 +1226,7 @@
 
       <div class="reel-card" data-name="Dra. Thielen" data-role="Cirurgiã Vascular" data-src="https://www.youtube.com/shorts/SjXs-_mmDxI">
         <div class="reel-card-video">
-          <img src="https://img.youtube.com/vi/SjXs-_mmDxI/hqdefault.jpg" alt="Dra. Thielen" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="https://img.youtube.com/vi/SjXs-_mmDxI/hqdefault.jpg" alt="Dra. Thielen" width="480" height="360" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="reel-card-info">
@@ -1228,7 +1238,7 @@
 
       <div class="reel-card" data-name="Tereza Cristina" data-role="Advogada" data-src="https://www.youtube.com/shorts/bJaKzu9WHy0">
         <div class="reel-card-video">
-          <img src="https://img.youtube.com/vi/bJaKzu9WHy0/hqdefault.jpg" alt="Tereza Cristina" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="https://img.youtube.com/vi/bJaKzu9WHy0/hqdefault.jpg" alt="Tereza Cristina" width="480" height="360" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="reel-card-info">
@@ -1240,7 +1250,7 @@
 
       <div class="reel-card" data-name="Felipe Vilela" data-role="Advogado" data-src="https://www.youtube.com/shorts/ij42ilGNbrY">
         <div class="reel-card-video">
-          <img src="https://img.youtube.com/vi/ij42ilGNbrY/hqdefault.jpg" alt="Felipe Vilela" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="https://img.youtube.com/vi/ij42ilGNbrY/hqdefault.jpg" alt="Felipe Vilela" width="480" height="360" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="reel-card-info">
@@ -1253,7 +1263,7 @@
       <!-- set 2 — duplicata para loop seamless -->
       <div class="reel-card" data-name="Paola Massari" data-role="Casa Hunter" data-src="https://www.youtube.com/shorts/JRrnKGNk-UE">
         <div class="reel-card-video">
-          <img src="https://img.youtube.com/vi/JRrnKGNk-UE/hqdefault.jpg" alt="Paola Massari" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="https://img.youtube.com/vi/JRrnKGNk-UE/hqdefault.jpg" alt="Paola Massari" width="480" height="360" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="reel-card-info">
@@ -1264,7 +1274,7 @@
       </div>
       <div class="reel-card" data-name="Dra. Carolina Mergulhão" data-role="Endocrinologia | Metabologia" data-src="https://www.youtube.com/shorts/PoBa9wS9rYM">
         <div class="reel-card-video">
-          <img src="https://img.youtube.com/vi/PoBa9wS9rYM/hqdefault.jpg" alt="Dra. Carolina Mergulhão" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="https://img.youtube.com/vi/PoBa9wS9rYM/hqdefault.jpg" alt="Dra. Carolina Mergulhão" width="480" height="360" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="reel-card-info">
@@ -1275,7 +1285,7 @@
       </div>
       <div class="reel-card" data-name="Dra. Thielen" data-role="Cirurgiã Vascular" data-src="https://www.youtube.com/shorts/SjXs-_mmDxI">
         <div class="reel-card-video">
-          <img src="https://img.youtube.com/vi/SjXs-_mmDxI/hqdefault.jpg" alt="Dra. Thielen" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="https://img.youtube.com/vi/SjXs-_mmDxI/hqdefault.jpg" alt="Dra. Thielen" width="480" height="360" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="reel-card-info">
@@ -1286,7 +1296,7 @@
       </div>
       <div class="reel-card" data-name="Tereza Cristina" data-role="Advogada" data-src="https://www.youtube.com/shorts/bJaKzu9WHy0">
         <div class="reel-card-video">
-          <img src="https://img.youtube.com/vi/bJaKzu9WHy0/hqdefault.jpg" alt="Tereza Cristina" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="https://img.youtube.com/vi/bJaKzu9WHy0/hqdefault.jpg" alt="Tereza Cristina" width="480" height="360" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="reel-card-info">
@@ -1297,7 +1307,7 @@
       </div>
       <div class="reel-card" data-name="Felipe Vilela" data-role="Advogado" data-src="https://www.youtube.com/shorts/ij42ilGNbrY">
         <div class="reel-card-video">
-          <img src="https://img.youtube.com/vi/ij42ilGNbrY/hqdefault.jpg" alt="Felipe Vilela" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <img src="https://img.youtube.com/vi/ij42ilGNbrY/hqdefault.jpg" alt="Felipe Vilela" width="480" height="360" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
           <div class="reel-card-overlay"></div>
           <div class="reel-card-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
           <div class="reel-card-info">
@@ -1352,7 +1362,7 @@
 
     <!-- Brand -->
     <div class="footer-brand">
-      <a href="/"><img src="logo-white.png" alt="Makewell Comunicação"></a>
+      <a href="/"><img src="logo-white.png" alt="Makewell Comunicação" width="208" height="52" loading="lazy"></a>
       <div class="footer-socials">
         <!-- Instagram -->
         <a href="https://www.instagram.com/makewellcomunicacao/" class="footer-social" aria-label="Instagram" target="_blank" rel="noopener">
