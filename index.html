@@ -236,26 +236,28 @@
     display: none; position: fixed; inset: 0;
     background: #080808; z-index: 199;
     flex-direction: column; justify-content: center;
-    padding: 0 32px;
+    padding: 0 36px;
+    gap: 0;
   }
   .mobile-menu.open { display: flex; }
   .mobile-menu a.mobile-link {
-    font-size: clamp(32px, 9vw, 48px);
-    font-weight: 900;
-    letter-spacing: -1.5px;
-    color: #333;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #444;
     text-decoration: none;
-    padding: 14px 0;
+    padding: 20px 0;
     width: 100%;
-    border-bottom: 1px solid #1a1a1a;
-    transition: color .2s;
-    display: flex; align-items: center; gap: 16px;
+    border-bottom: 1px solid #161616;
+    transition: color .2s, border-color .2s;
+    display: flex; align-items: center; justify-content: space-between;
   }
-  .mobile-menu a.mobile-link .mn { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #2a2a2a; margin-top: 4px; flex-shrink: 0; transition: color .2s; }
+  .mobile-menu a.mobile-link .mn { font-size: 10px; font-weight: 600; letter-spacing: 1px; color: #222; transition: color .2s; }
   .mobile-menu a.mobile-link:last-of-type { border-bottom: none; }
-  .mobile-menu a.mobile-link:hover, .mobile-menu a.mobile-link:active { color: #fff; }
+  .mobile-menu a.mobile-link:hover, .mobile-menu a.mobile-link:active { color: #fff; border-color: #2a2a2a; }
   .mobile-menu a.mobile-link:hover .mn, .mobile-menu a.mobile-link:active .mn { color: var(--gold); }
-  .mobile-menu .btn-primary { margin-top: 36px; width: 100%; justify-content: center; font-size: 13px; }
+  .mobile-menu .btn-primary { margin-top: 40px; width: 100%; justify-content: center; }
 
   /* WhatsApp float */
   .wa-float {
@@ -1523,7 +1525,6 @@
         <a href="#servicos">Serviços</a>
         <a href="#cases">Cases</a>
         <a href="#metodo">Método</a>
-        <a href="https://wa.me/5582999103246" target="_blank" rel="noopener">Contato</a>
         <a href="politica-de-privacidade.html">Política de Privacidade</a>
       </div>
     </div>
