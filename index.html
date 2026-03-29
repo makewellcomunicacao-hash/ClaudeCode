@@ -221,6 +221,11 @@ src="https://www.facebook.com/tr?id=2571294026447618&ev=PageView&noscript=1"
   .reveal-right { opacity: 0; transform: translateX(56px) scale(.97); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); will-change: transform, opacity; }
   .reveal-right.visible { opacity: 1; transform: translateX(0) scale(1); will-change: auto; }
 
+  /* LCP: hero elements visible at first CSS paint — não dependem de JS */
+  .hero .reveal, .hero .reveal-left, .hero .reveal-right {
+    opacity: 1; transform: none; transition: none; will-change: auto;
+  }
+
   /* UTILS */
   .tag { font-size: 9px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
   .gold {
@@ -1965,29 +1970,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   });
 
-  // ── 3D Tilt on hero card ──
+  // ── 3D Tilt + Magnetic buttons (deferred — não bloqueiam TBT) ──
   if (isFine) {
-    const hCard = document.querySelector('.hero-card');
-    if (hCard) {
-      hCard.addEventListener('mousemove', e => {
-        const r = hCard.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width / 2) / r.width;
-        const y = (e.clientY - r.top - r.height / 2) / r.height;
-        hCard.style.transform = `perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg) scale(1.01)`;
+    const setupInteractions = () => {
+      const hCard = document.querySelector('.hero-card');
+      if (hCard) {
+        hCard.addEventListener('mousemove', e => {
+          const r = hCard.getBoundingClientRect();
+          const x = (e.clientX - r.left - r.width / 2) / r.width;
+          const y = (e.clientY - r.top - r.height / 2) / r.height;
+          hCard.style.transform = `perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg) scale(1.01)`;
+        });
+        hCard.addEventListener('mouseleave', () => { hCard.style.transform = ''; });
+      }
+      document.querySelectorAll('.btn-primary, .btn-nav, .btn-dark').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const r = btn.getBoundingClientRect();
+          const x = (e.clientX - r.left - r.width / 2) * 0.13;
+          const y = (e.clientY - r.top - r.height / 2) * 0.13;
+          btn.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
       });
-      hCard.addEventListener('mouseleave', () => { hCard.style.transform = ''; });
+    };
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(setupInteractions, { timeout: 2000 });
+    } else {
+      setTimeout(setupInteractions, 500);
     }
-
-    // ── Magnetic buttons ──
-    document.querySelectorAll('.btn-primary, .btn-nav, .btn-dark').forEach(btn => {
-      btn.addEventListener('mousemove', e => {
-        const r = btn.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width / 2) * 0.13;
-        const y = (e.clientY - r.top - r.height / 2) * 0.13;
-        btn.style.transform = `translate(${x}px, ${y}px)`;
-      });
-      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
-    });
   }
 
   // ── LGPD Cookie banner ──
