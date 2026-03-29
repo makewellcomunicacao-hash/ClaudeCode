@@ -216,11 +216,11 @@ src="https://www.facebook.com/tr?id=2571294026447618&ev=PageView&noscript=1"
 
   /* REVEAL */
   .reveal { opacity: 0; transform: translateY(52px) scale(.97); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); will-change: transform, opacity; }
-  .reveal.visible { opacity: 1; transform: translateY(0) scale(1); will-change: auto; }
+  .reveal.visible { opacity: 1; transform: none; will-change: auto; }
   .reveal-left { opacity: 0; transform: translateX(-56px) scale(.97); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); will-change: transform, opacity; }
-  .reveal-left.visible { opacity: 1; transform: translateX(0) scale(1); will-change: auto; }
+  .reveal-left.visible { opacity: 1; transform: none; will-change: auto; }
   .reveal-right { opacity: 0; transform: translateX(56px) scale(.97); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); will-change: transform, opacity; }
-  .reveal-right.visible { opacity: 1; transform: translateX(0) scale(1); will-change: auto; }
+  .reveal-right.visible { opacity: 1; transform: none; will-change: auto; }
 
   /* LCP: hero elements visible at first CSS paint — não dependem de JS */
   .hero .reveal, .hero .reveal-left, .hero .reveal-right {
@@ -250,6 +250,7 @@ src="https://www.facebook.com/tr?id=2571294026447618&ev=PageView&noscript=1"
   nav.scrolled { background: rgba(8,8,8,.98); border-bottom: 1px solid #1e1e1e; }
 
   /* Compensar header fixo */
+  header { position: relative; z-index: 1000; }
   main { padding-top: 72px; }
   section[id] { scroll-margin-top: 80px; }
 
