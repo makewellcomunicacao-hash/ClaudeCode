@@ -807,6 +807,89 @@ src="https://www.facebook.com/tr?id=2571294026447618&ev=PageView&noscript=1"
     .cta-btns .btn-dark, .cta-btns .btn-white-outline { width: 100%; }
     .cases-cta { flex-direction: column; }
   }
+
+  /* ════════════════════════════════
+     PREMIUM UPGRADES
+  ════════════════════════════════ */
+
+  /* 1. Grain texture overlay */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 9988;
+    opacity: 0.055;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    mix-blend-mode: soft-light;
+  }
+
+  /* 2. Hero card glassmorphism */
+  .hero-card {
+    background: rgba(6,4,2,0.68);
+    border: 1px solid rgba(240,120,32,0.18);
+    border-radius: 20px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.05),
+      0 40px 80px rgba(0,0,0,0.7),
+      0 0 60px rgba(240,120,32,0.07);
+  }
+
+  /* 3. Hero ambient glow + aurora drift */
+  .hero-bg {
+    background:
+      radial-gradient(ellipse 60% 90% at 5% 70%, rgba(240,120,32,0.10) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 70% at 80% 50%, rgba(200,146,42,0.05) 0%, transparent 70%);
+    animation: aurora-drift 16s ease-in-out infinite;
+  }
+  @keyframes aurora-drift {
+    0%, 100% { transform: scale(1) translate(0, 0); }
+    40%       { transform: scale(1.06) translate(1.5%, 1%); }
+    70%       { transform: scale(0.97) translate(-1%, 1.5%); }
+  }
+
+  /* 4. Glowing accent values */
+  .hero-stat-value.accent { text-shadow: 0 0 32px rgba(240,120,32,0.42); }
+  .number-value .accent   { text-shadow: 0 0 28px rgba(240,120,32,0.32); }
+  .about-stat-val         { text-shadow: 0 0 24px rgba(240,120,32,0.28); }
+
+  /* 5. Hero h1 em warm glow */
+  h1.hero-h1 em { filter: drop-shadow(0 0 22px rgba(240,120,32,0.20)); }
+
+  /* 6. Hero stat cells glass */
+  .hero-stat { background: rgba(255,255,255,0.01); transition: background .25s; }
+  .hero-stat:hover { background: rgba(240,120,32,0.04); }
+
+  /* 7. Team card enhanced */
+  .team-card:hover {
+    border-color: rgba(240,120,32,0.30);
+    box-shadow: 0 8px 40px rgba(240,120,32,0.10), 0 0 0 1px rgba(240,120,32,0.14);
+  }
+
+  /* 8. Service card hover glow */
+  .service-card { transition: background .3s, box-shadow .3s; }
+  .service-card:hover { box-shadow: inset 0 1px 0 rgba(240,120,32,0.08), 0 0 50px rgba(240,120,32,0.05); }
+
+  /* 9. Case card hover glow */
+  .case-card:hover { box-shadow: 0 0 50px rgba(240,120,32,0.07), 0 20px 40px rgba(0,0,0,0.4); }
+
+  /* 10. Nav glass enhanced */
+  nav.scrolled {
+    background: rgba(6,6,6,0.92);
+    border-bottom: 1px solid rgba(240,120,32,0.10);
+    box-shadow: 0 2px 40px rgba(0,0,0,0.5);
+  }
+
+  /* 11. Porque card hover glow */
+  .porque-card:hover { box-shadow: 0 24px 64px rgba(0,0,0,0.22), 0 0 40px rgba(240,120,32,0.05); }
+
+  /* 12. FAQ hover */
+  .faq-question { transition: color .2s, background .2s; border-radius: 8px; }
+  .faq-question:hover { background: rgba(240,120,32,0.03); }
+
+  /* 13. 3D tilt transition on hero card */
+  .hero-card { transition: transform .25s ease, box-shadow .25s ease; transform-style: preserve-3d; }
 </style>
 </head>
 <body ontouchstart="">
@@ -1886,6 +1969,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     }
   });
+
+  // ── 3D Tilt on hero card ──
+  if (isFine) {
+    const hCard = document.querySelector('.hero-card');
+    if (hCard) {
+      hCard.addEventListener('mousemove', e => {
+        const r = hCard.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) / r.width;
+        const y = (e.clientY - r.top - r.height / 2) / r.height;
+        hCard.style.transform = `perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg) scale(1.01)`;
+      });
+      hCard.addEventListener('mouseleave', () => { hCard.style.transform = ''; });
+    }
+
+    // ── Magnetic buttons ──
+    document.querySelectorAll('.btn-primary, .btn-nav, .btn-dark').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) * 0.13;
+        const y = (e.clientY - r.top - r.height / 2) * 0.13;
+        btn.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+    });
+  }
 
   // ── LGPD Cookie banner ──
   (function() {
