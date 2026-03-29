@@ -19,6 +19,7 @@
 <meta name="author" content="Makewell Comunicação">
 <link rel="canonical" href="https://makewell.com.br/">
 <link rel="manifest" href="/manifest.json">
+<link rel="preload" as="image" href="logo-white.png">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -914,7 +915,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header>
   <nav id="nav" role="navigation" aria-label="Menu principal">
     <a href="/" class="nav-logo" aria-label="Makewell Comunicação — página inicial">
-      <img src="logo-white.png" alt="Makewell Comunicação" width="160" height="40">
+      <img src="logo-white.png" alt="Makewell Comunicação" width="160" height="40" fetchpriority="high">
     </a>
     <div class="nav-right">
       <div class="nav-links" role="list">
@@ -1655,7 +1656,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="footer-col-title">Localização</div>
       <p class="footer-address-line">R. Prof. Lourenço Peixoto, 36, Sala 04, Jatiúca, Maceió, AL.</p>
       <div class="footer-contact">
-        <a href="mailto:contato@makewell.com.br">contato@makewell.com.br</a>
+        <span id="footer-email"><noscript><a href="mailto:contato@makewell.com.br">contato@makewell.com.br</a></noscript></span>
         <span class="footer-cnpj">C.N.P.J.: 27.238.877/0001-71</span>
       </div>
     </div>
@@ -1720,8 +1721,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   instModalClose.addEventListener('click', closeInstModal);
   instModal.addEventListener('click', e => { if (e.target === instModal) closeInstModal(); });
 
-  // ── Marquee infinito ──
-  (function() {
+  // ── Email via JS (evita Cloudflare email-decode.min.js no caminho crítico) ──
+  (function(){ var u='contato',d='makewell.com.br',el=document.getElementById('footer-email'); if(el) el.innerHTML='<a href="mailto:'+u+'@'+d+'">'+u+'@'+d+'</a>'; })();
+
+  // ── Marquee infinito (diferido para evitar forced reflow no carregamento) ──
+  function initMarquee() {
     const track = document.getElementById('depoMarquee');
     if (!track) return;
     let pos = 0, paused = false, raf;
@@ -1730,14 +1734,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     wrap.addEventListener('mouseenter', () => { paused = true; });
     wrap.addEventListener('mouseleave', () => { paused = false; });
 
-    // Pega os 5 cards originais e calcula a largura de um set
     const origCards = Array.from(track.children).slice(0, 5);
     const firstCard = origCards[0];
     const cardStyle = getComputedStyle(firstCard);
     const cardW = firstCard.offsetWidth + parseFloat(cardStyle.marginRight);
     const setW = origCards.length * cardW;
 
-    // Clona sets extras até a track ser larga o suficiente para qualquer tela
     function fillTrack() {
       while (track.scrollWidth < window.innerWidth + setW * 2) {
         origCards.forEach(c => track.appendChild(c.cloneNode(true)));
@@ -1759,7 +1761,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (document.hidden) cancelAnimationFrame(raf);
       else tick();
     });
-  })();
+  }
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(initMarquee, { timeout: 3000 });
+  } else {
+    setTimeout(initMarquee, 800);
+  }
 
   // ── Reels modal ──
   const reelModal = document.getElementById('reelModal');
