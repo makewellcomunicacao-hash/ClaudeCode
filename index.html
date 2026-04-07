@@ -1344,6 +1344,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     revealEls.forEach(el => el.classList.add('visible'));
   }, 8000);
 
+  // ── Phase 2: Non-critical JS deferred to reduce TBT ──
+  setTimeout(function() {
+
   // ── Numbers section counter ──
   (function() {
     const numberEls = document.querySelectorAll('.number-value[data-target]');
@@ -1541,6 +1544,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       banner.classList.remove('visible');
     });
   })();
+
+  }, 0); // end Phase 2
 </script>
 
 <!-- Meta Pixel (shim inline — script externo diferido) -->
