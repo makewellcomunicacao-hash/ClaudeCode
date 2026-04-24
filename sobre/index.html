@@ -93,6 +93,7 @@
   .nav-links a.active { color: var(--gold-light); }
   .btn-nav { background: var(--gold-light); color: #fff; border: none; padding: 11px 20px; font-weight: 800; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 6px; transition: background .2s, transform .2s; white-space: nowrap; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; line-height: 1; box-sizing: border-box !important; width: 176px !important; min-width: 176px !important; max-width: 176px !important; flex: none !important }
   .btn-nav:hover, .btn-nav:active { background: var(--gold); transform: translateY(-1px); }
+  .btn-nav.touch-active { background: var(--gold); transform: translateY(-1px); }
   #lang-toggle { display: flex; align-items: center; gap: 6px; }
   .lang-sep { color: #333; font-size: 11px; }
   .lang-btn { background: none; border: none; cursor: pointer; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: #bbb; padding: 10px 8px; transition: color .2s; text-transform: uppercase; min-height: 44px; text-decoration: none; display: inline-flex; align-items: center; }
@@ -216,9 +217,7 @@
   .team-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(8,8,8,.7) 100%);pointer-events:none;}
   .team-photo-caption{position:absolute;bottom:20px;left:28px;right:28px;font-size:13px;color:#ccc;font-style:italic;z-index:2;}
   @media (max-width:768px){.team-photo{aspect-ratio:4/3;margin:28px 0 24px;}.team-photo-caption{bottom:14px;left:18px;right:18px;font-size:12px;}}
-  @media (hover: none) {
-    .audience-card:active { border-color: var(--gold-light); transform: translateY(-2px); }
-  }
+  .audience-card.touch-active { border-color: var(--gold-light); transform: translateY(-2px); }
   .skip-link{position:absolute;top:-100%;left:16px;background:var(--gold);color:#000;padding:8px 16px;border-radius:0 0 4px 4px;font-weight:600;z-index:9999;transition:top .15s;text-decoration:none;font-size:13px;}
   .skip-link:focus{top:0;}
 </style>
@@ -624,6 +623,17 @@ src="https://www.facebook.com/tr?id=2571294026447618&ev=PageView&noscript=1"
     var lang = saved || browserLang;
     if(lang !== 'pt') applyLang(lang, false);
   })();
+})();
+</script>
+<script>
+(function(){
+  var sel = '.audience-card,.btn-nav';
+  document.addEventListener('touchstart', function(e){
+    var el = e.target.closest(sel);
+    if(!el) return;
+    el.classList.add('touch-active');
+    setTimeout(function(){ el.classList.remove('touch-active'); }, 400);
+  }, { passive: true });
 })();
 </script>
 </body>

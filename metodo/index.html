@@ -81,6 +81,7 @@
   .nav-links a.active { color: var(--gold-light); }
   .btn-nav { background: var(--gold-light); color: #fff; border: none; padding: 11px 20px; font-weight: 800; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 6px; transition: background .2s, transform .2s; white-space: nowrap; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; line-height: 1; box-sizing: border-box !important; width: 176px !important; min-width: 176px !important; max-width: 176px !important; flex: none !important }
   .btn-nav:hover, .btn-nav:active { background: var(--gold); transform: translateY(-1px); }
+  .btn-nav.touch-active { background: var(--gold); transform: translateY(-1px); }
   #lang-toggle { display: flex; align-items: center; gap: 6px; }
   .lang-sep { color: #333; font-size: 11px; }
   .lang-btn { background: none; border: none; cursor: pointer; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: #bbb; padding: 10px 8px; transition: color .2s; text-transform: uppercase; min-height: 44px; text-decoration: none; display: inline-flex; align-items: center; }
@@ -609,6 +610,17 @@ src="https://www.facebook.com/tr?id=2571294026447618&ev=PageView&noscript=1"
   var saved = localStorage.getItem('mw-lang');
   var preferred = saved || (navigator.language || '').slice(0,2);
   if(preferred === 'en') applyLang('en');
+})();
+</script>
+<script>
+(function(){
+  var sel = '.btn-nav';
+  document.addEventListener('touchstart', function(e){
+    var el = e.target.closest(sel);
+    if(!el) return;
+    el.classList.add('touch-active');
+    setTimeout(function(){ el.classList.remove('touch-active'); }, 400);
+  }, { passive: true });
 })();
 </script>
 </body>
